@@ -27,6 +27,46 @@ public class Producto {
         this.precioProd = precioProd;
         this.cantExist = cantExist;
     }
+
+    public int getId_Producto() {
+        return id_Producto;
+    }
+
+    public void setId_Producto(int id_Producto) {
+        this.id_Producto = id_Producto;
+    }
+
+    public String getNombreProd() {
+        return nombreProd;
+    }
+
+    public void setNombreProd(String nombreProd) {
+        this.nombreProd = nombreProd;
+    }
+
+    public String getCategProd() {
+        return categProd;
+    }
+
+    public void setCategProd(String categProd) {
+        this.categProd = categProd;
+    }
+
+    public float getPrecioProd() {
+        return precioProd;
+    }
+
+    public void setPrecioProd(float precioProd) {
+        this.precioProd = precioProd;
+    }
+
+    public int getCantExist() {
+        return cantExist;
+    }
+
+    public void setCantExist(int cantExist) {
+        this.cantExist = cantExist;
+    }
     
     
     

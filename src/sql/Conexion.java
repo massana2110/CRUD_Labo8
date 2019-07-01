@@ -19,33 +19,26 @@ public class Conexion {
     private final String DRIVER = "org.postgresql.Driver";
     private final String URL = "jdbc:postgresql://localhost:5432/Ventas";
     private final String USERNAME = "postgres";
-    private final String PASSWORD = "root";
+    private final String PASSWORD = "rogstrixPC21";
 
-    public Connection abrirConexion(){
-        Connection con = null;
+    private Connection connection;
+    
+    public Conexion() {
+        connection = null;
         try{
             Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch(Exception e){
+            connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+        }catch(Exception e){
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
             System.exit(0);
         }
-        finally{
-            if(con != null)
-                return con;
-            else
-                return null;
-        }
+        System.out.println("Opened database successfully");
+
     }
     
-    public void cerrarConexion(Connection c){
-        try{
-            c.close();
-        }
-        catch(SQLException e){
-            System.out.println("ERROR: "+e.getMessage());
-        }
+    public Connection getConnection(){
+        return connection;
     }
 
 }

@@ -10,6 +10,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -75,7 +76,7 @@ public class CreateWindow extends JFrame{
         
         contenedor = getContentPane();
         contenedor.add(panelForm);
-        setSize(350,200);
+        setSize(400,350);
         setResizable(false);
         
         aceptar.addActionListener(
@@ -88,11 +89,15 @@ public class CreateWindow extends JFrame{
                         String txtCantExist = cantExist.getText();
                         int cant = Integer.parseInt(txtCantExist);
                         int idCategoria = tipoCat.getSelectedIndex();
-                        if (query.addProduct(txtNombreProd, idCategoria, precio, cant)) {
-                            JOptionPane.showMessageDialog(rootPane, "PRODUCTO AGREGADO CON EXITO.");
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(rootPane, "ERROR: NO SE PUDO COMPLETAR LA ACCION.");
+                        try{
+                            if (query.addProduct(txtNombreProd, idCategoria, precio, cant)) {
+                                JOptionPane.showMessageDialog(rootPane, "PRODUCTO AGREGADO CON EXITO.");
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(rootPane, "ERROR: NO SE PUDO COMPLETAR LA ACCION.");
+                            }
+                        }catch(SQLException e){
+                            e.printStackTrace();
                         }
                     }
                     else{
