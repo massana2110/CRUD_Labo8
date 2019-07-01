@@ -6,11 +6,13 @@
 
 package sql;
 
+import Entidades.Producto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 
@@ -66,6 +68,33 @@ public class DBQuery {
         return tipos;
     }
     
+    public ArrayList<Producto> getAllProd(){
+        
+        ArrayList<Producto> products = new ArrayList();
+        String query = "SELECT id_producto, nombre_producto, nombre_categoria, precio_unitario, cantidad_existencia FROM producto" +
+                        " INNER JOIN categoria_producto ON producto.id_categoria = categoria_producto.id_categoria" +
+                        " ORDER BY id_producto ASC";
+        try{
+            con = conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Producto prod = new Producto();
+                prod.setId_Producto(rs.getInt("id_producto"));
+                prod.setNombreProd(rs.getString("nombre_producto"));
+                prod.setCategProd(rs.getString("nombre_categoria"));
+                prod.setPrecioProd(rs.getFloat("precio_unitario"));
+                prod.setCantExist(rs.getInt("cantidad_existencia"));
+                
+                products.add(prod);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return products;
+    }
+    
     public boolean updateProduct(int id, String nombre, int categ, float precioProd, int cantExist) throws SQLException{
         String query = "UPDATE producto SET nombre_producto = ?, id_categoria = ?, precio_unitario = ?, cantidad_existencia = ? WHERE id_producto = ?";
         
@@ -87,6 +116,6 @@ public class DBQuery {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return false;
     }
 }
