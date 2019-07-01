@@ -56,7 +56,7 @@ public class DeleteWindow extends JFrame{
         panelForm.add(idProd);
         
         
-        eliminar = new JButton("ACTUALIZAR");
+        eliminar = new JButton("ELIMINAR");
         panelForm.add(eliminar);
         cancelar = new JButton("REGRESAR");
         panelForm.add(cancelar);

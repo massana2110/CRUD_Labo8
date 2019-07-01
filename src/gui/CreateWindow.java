@@ -92,6 +92,7 @@ public class CreateWindow extends JFrame{
                         try{
                             if (query.addProduct(txtNombreProd, idCategoria, precio, cant)) {
                                 JOptionPane.showMessageDialog(rootPane, "PRODUCTO AGREGADO CON EXITO.");
+                                limpiarCampos();
                             }
                             else{
                                 JOptionPane.showMessageDialog(rootPane, "ERROR: NO SE PUDO COMPLETAR LA ACCION.");
@@ -126,6 +127,13 @@ public class CreateWindow extends JFrame{
                 res = false;
         }
         return res;
+    }
+    
+    public void limpiarCampos(){
+        nombreProd.setText("");
+        precioProd.setText("");
+        cantExist.setText("");
+        tipoCat.setSelectedIndex(0);
     }
 }
 

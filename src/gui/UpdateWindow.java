@@ -121,6 +121,7 @@ public class UpdateWindow extends JFrame{
                     int cant = Integer.parseInt(txtCant);
                     try{
                         if (query.updateProduct(id, txtNombre, idCat , precio, cant)) {
+                            limpiarCampos();
                             JOptionPane.showMessageDialog(rootPane, "PRODUCTO EDITADO CON EXITO", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "ERROR: PRODUCTO NO EXISTE EN LA BD", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -131,5 +132,13 @@ public class UpdateWindow extends JFrame{
                 }
             }
         });
+    }
+    
+    public void limpiarCampos(){
+        idProd.setText("");
+        nombreProd.setText("");
+        precioProd.setText("");
+        cantExist.setText("");
+        tipoCat.setSelectedIndex(0);
     }
 }
