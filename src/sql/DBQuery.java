@@ -118,4 +118,23 @@ public class DBQuery {
         }
         return false;
     }
+    
+    public boolean deleteProduct(int idProd) throws SQLException{
+        String query = "DELETE FROM producto WHERE id_producto = ?";
+        
+        try{
+            con = conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idProd);
+            int rows = ps.executeUpdate();
+            if (rows != 0) {
+                return true;
+            }
+            con.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }

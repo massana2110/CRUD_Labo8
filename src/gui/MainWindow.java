@@ -94,6 +94,13 @@ public class MainWindow extends JFrame{
                     }
                 }
         );
+        delete.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        DeleteWindow dw = new DeleteWindow();
+                    }
+                }
+        );
     }
     
 }
